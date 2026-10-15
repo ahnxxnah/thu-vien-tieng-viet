@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#f0e4d3"/>
+<title>Thư viện Mây Nhỏ – Phiên bản nhân vật chuyển động</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="shell">
+<header class="topline">
+  <div class="brand"><div class="brand-illustration">📚</div><div><strong>THƯ VIỆN MÂY NHỎ</strong><small>Học tiếng Việt qua từng lời chào ☁️</small></div></div>
+  <div class="toplinks"><button class="ghost small" id="showHelp">❔ Hướng dẫn</button><button class="ghost small" id="showAchievements">🏆 Thành tích</button><button class="ghost small" id="showSettings">⚙️ Cài đặt</button></div>
+</header>
+
+<section id="appContent" class="is-hidden" aria-label="Trò chơi thư viện">
+  <div class="hud">
+    <div class="hud-col"><span class="caption">Ngày / Cấp</span><strong id="hudDay">📅 Ngày 1</strong></div>
+    <div class="hud-col"><label class="caption" for="gradeSelect">Độ khó</label><select id="gradeSelect" aria-label="Chọn độ khó từ lớp 1 đến lớp 5"><option value="1">Lớp 1</option><option value="2">Lớp 2</option><option value="3">Lớp 3</option><option value="4">Lớp 4</option><option value="5">Lớp 5</option></select></div>
+    <div class="hud-col"><span class="caption">Thư viện</span><button id="modeBtn" class="status-btn" aria-label="Đổi trạng thái thư viện">🟢 Mở cửa ▾</button><div id="modeMenu" class="mode-menu is-hidden"><button data-mode="open">🟢 Mở cửa</button><button data-mode="paused">⏸️ Tạm dừng</button><button data-mode="closed">🔒 Đóng cửa</button></div></div>
+    <div class="hud-col"><span class="caption">Khách đã phục vụ</span><strong id="hudGuests">👥 0/10</strong></div>
+    <div class="hud-col"><span class="caption">Khách hài lòng</span><strong id="hudStars">⭐ 0/10</strong></div>
+    <div class="hud-col"><span class="caption">Tiền đang có</span><strong id="hudCash">🪙 250</strong></div>
+    <div class="hud-col sound-col"><span class="caption">Âm thanh</span><button id="soundBtn" class="toggle-sound">🔇 Tắt</button></div>
+  </div>
+  <div class="content-layout">
+    <main class="main-column">
+      <section class="scene-card">
+        <div class="scene-heading"><div><h1>Chào mừng đến với thư viện của <span id="librarianName">bé</span>!</h1><p>Chạm vào khu vực để bé tự đi tới, hoặc dùng bàn phím để khám phá và trò chuyện với khách.</p></div><span class="daytag" id="dayGoal">🎯 Mục tiêu: ít nhất 7/10 sao</span></div>
+        <div class="scene-wrap"><canvas id="scene" width="480" height="280" aria-label="Bản đồ pixel của thư viện gồm phòng đọc, quầy cà phê, quầy thu ngân, kho" role="img"></canvas><div class="scene-overlay" id="sceneOverlay"><span>⏸️ Khách đang chờ thư viện hoạt động</span></div><div class="scene-ribbon" id="sceneRibbon">👆 Chạm khu vực để đi tới · WASD / phím mũi tên để di chuyển</div></div>
+        <div class="motion-instructions"><span>🕹️ <b>Di chuyển:</b> WASD / ← ↑ → ↓ hoặc chạm vào phòng. Đến gần khách rồi bấm <b>E</b> để trò chuyện.</span>
+        <div class="touch-pad" id="touchPad" aria-label="Điều khiển nhân vật trên điện thoại"><button data-move="arrowleft" aria-label="Đi trái">◀</button><button data-move="arrowup" aria-label="Đi lên">▲</button><button data-move="arrowdown" aria-label="Đi xuống">▼</button><button data-move="arrowright" aria-label="Đi phải">▶</button><button id="touchTalk" aria-label="Trò chuyện với khách">💬 Nói chuyện</button></div>
+      </div>
+      </section>
+      <section class="zone-grid" id="zoneCards" aria-label="Chọn khu vực thư viện"></section>
+      <section class="bottom-note"><strong>💡 Mẹo:</strong> Trả lời sai không bị trừ tiền. Mỗi khách hài lòng sẽ tặng một ⭐. Nâng cấp đồ đạc để làm thư viện đẹp hơn và nhận nhiều tiền thưởng hơn. <span id="stockNotice"></span></section>
+    </main>
+    <aside class="side-column">
+      <section class="panel" id="visitorPanel"><!-- tạo bằng JS --></section>
+      <section class="panel slim" id="miniPanel"><!-- tạo bằng JS --></section>
+    </aside>
+  </div>
+</section>
+<footer class="footer">🌼 Trò chơi ôn tập do ChatGPT biên soạn theo các chủ điểm Tiếng Việt tiểu học – Kết nối tri thức. Câu hỏi là nội dung mới, không phải trích nguyên văn sách giáo khoa.</footer>
+</div>
+
+<div id="onboarding" class="overlay" role="dialog" aria-modal="true" aria-label="Bắt đầu trò chơi"><div class="start-dialog">
+ <div class="start-art" aria-hidden="true"><span class="pixel-sun">☀</span><div class="art-roof"></div><div class="art-house"><div class="art-sign">THƯ VIỆN</div><div class="art-door">📚</div><div class="art-window">☕</div></div><span class="art-flower">🌷 🌼 🌷</span></div>
+ <div class="start-body"><span class="eyebrow">MỘT GÓC NHỎ, NGÀN CÂU CHUYỆN</span><h2>Thư viện Mây Nhỏ</h2><p>Hóa thân thành thủ thư tí hon, trò chuyện với khách, khám phá tiếng Việt và trang trí thư viện thật xinh!</p>
+  <label class="field"><span>Tên người quản lí thư viện</span><input id="playerName" type="text" maxlength="22" placeholder="Ví dụ: Bông, Na, Mít…" autocomplete="off"/></label>
+  <label class="field"><span>Bắt đầu luyện ở lớp</span><select id="startGrade"><option value="1">Lớp 1 – Làm quen</option><option value="2">Lớp 2 – Từ và câu</option><option value="3">Lớp 3 – So sánh và kiểu câu</option><option value="4">Lớp 4 – Từ loại và thành phần câu</option><option value="5">Lớp 5 – Câu ghép và liên kết</option></select></label>
+  <div class="settings-inline"><label><input id="startMusic" type="checkbox" checked/> 🎵 Nhạc nền</label><label><input id="startEffects" type="checkbox" checked/> 🔔 Âm thanh hoạt động</label></div>
+  <button id="startHelp" class="ghost">📖 Xem hướng dẫn chơi</button><button id="startGame" class="primary big">💛 Lưu và bắt đầu</button>
+  <p id="continueHint" class="tiny-note"></p>
+ </div>
+</div></div>
+
+<div id="dialogOverlay" class="overlay is-hidden" role="dialog" aria-modal="true" aria-label="Hộp thoại trò chơi"><div id="dialogBody" class="modal-content"></div></div>
+<div id="toastRack" aria-live="polite"></div>
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
